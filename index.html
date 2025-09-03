@@ -1,62 +1,102 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FDND Visitekaartje</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visitekaartje Jasin</title>
+  <link rel="stylesheet" href="styles/style.css"/>
 </head>
 <body>
-  
   <article class="profile-card-example">
-    
+
     <!-- Header -->
     <header class="profile-card-example-header">
-      <h1>Jasin Ahmed</h1>
-      <p><em>Ik studeer FDND</em></p>
-      
-      <!-- Knop voor layout wissel -->
-      <button class="profile-card-example-button" aria-label="Wijzig layout">
-        <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <title>Wijzig layout</title>
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M4 8v-2a2 2 0 0 1 2 -2h2"></path>
-          <path d="M4 16v2a2 2 0 0 0 2 2h2"></path>
-          <path d="M16 4h2a2 2 0 0 1 2 2v2"></path>
-          <path d="M16 20h2a2 2 0 0 0 2 -2v-2"></path>
+      <h1>Jasin – 20 jaar</h1>
+      <p><em>Student FDND • Passie voor auto’s</em></p>
+
+      <!-- Layout toggle knop -->
+      <button class="profile-card-example-button" aria-label="Wissel layout">
+        <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" />
+          <path d="M4 8v-2a2 2 0 0 1 2 -2h2"/>
+          <path d="M4 16v2a2 2 0 0 0 2 2h2"/>
+          <path d="M16 4h2a2 2 0 0 1 2 2v2"/>
+          <path d="M16 20h2a2 2 0 0 0 2 -2v-2"/>
+        </svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </header>
 
     <!-- Profielfoto -->
-    <img 
-      src="assets/Arthur.jpg" 
-      alt="Profielfoto van Jasin Ahmed" 
-      width="200" height="200" 
-      class="profile-card-example-img"
-    >
-
-    <!-- Skills -->
-    <dl class="profile-card-example-dl">
-      <dt>Samenwerken</dt>
-      <dd>🏆🏆🏆</dd>
-      
-      <dt>Plannen</dt>
-      <dd>🏆🏆</dd>
-      
-      <dt>Betrouwbaar</dt>
-      <dd>🏆🏆🏆🏆</dd>
-    </dl>
+    <img src="assets/Arthur .jpg" alt="Profielfoto van Jasin" class="profile-card-example-img"/>
 
     <!-- Over mij -->
-    <p class="profile-card-example-about">
-      Ik ben Jasin, ik ben 20 jaar oud en ik volg de studie FDND.<br>
-      Ik ben een gedreven jongeman, ik wil altijd mijn best doen en ik hou ervan om samen te werken 
-      met mensen die ook kunnen lachen. Zolang er een goede sfeer is, kan ik goed werk leveren.
-    </p>
+    <section class="card card--about">
+      <h2>Over mij</h2>
+      <p>
+        Ik ben Jasin, een jongen van 20 jaar met een grote interesse in frontend development. 
+        Ik wil mezelf graag verder ontwikkelen in dit vak en groeien tot een sterke front-end ontwikkelaar. 
+        Leren, experimenteren en steeds beter worden geeft mij veel energie.
+      </p>
+    </section>
+
+    <!-- H2 links -->
+    <section class="card card--left">
+      <h2>Wat ik belangrijk vind</h2>
+      <p>
+        Heldere communicatie, verantwoordelijkheid nemen en met plezier samenwerken aan resultaat.
+      </p>
+    </section>
+
+    <!-- H2 rechts -->
+    <section class="card card--right">
+      <h2>Skills & Kwaliteiten</h2>
+      <ul>
+        <li>Communicatief vaardig</li>
+        <li>Leergierig en nieuwsgierig</li>
+        <li>Gemotiveerd en doorzettend</li>
+      </ul>
+    </section>
+
+    <!-- H3 links -->
+    <section class="card card--list">
+      <h3>Interesses</h3>
+      <ul>
+        <li>Auto’s & techniek</li>
+        <li>Front-end design</li>
+        <li>Samen projecten bouwen</li>
+      </ul>
+    </section>
+
+    <!-- H3 rechts -->
+    <section class="card card--extra">
+      <h3>Doelen</h3>
+      <p>
+        Verder groeien in webontwikkeling en mijn passie voor auto’s combineren met digitale producten. <br>
+        In de toekomst is mijn droom om een <strong>BMW M4 Competition full option</strong> te bezitten.
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="profile-card-example-footer">
+      <p>Volg mij:</p>
+      <ul>
+        <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
+        <li><a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
+        <li><a href="https://x.com" target="_blank" rel="noreferrer">X</a></li>
+      </ul>
+    </footer>
     
   </article>
 
-  <script src="scripts/script.js"></script>
+  <script>
+    // Toggle layout knop
+    document.querySelector('.profile-card-example-button')
+      ?.addEventListener('click', () => {
+        document.body.classList.toggle('is-expanded');
+      });
+  </script>
 </body>
 </html>
