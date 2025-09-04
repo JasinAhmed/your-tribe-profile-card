@@ -1,102 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Visitekaartje Jasin</title>
-  <link rel="stylesheet" href="styles/style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visitekaartje – Jasin</title>
+  <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-  <article class="profile-card-example">
+  <section class="scene" aria-label="3D visitekaartje van Jasin">
 
-    <!-- Header -->
-    <header class="profile-card-example-header">
-      <h1>Jasin – 20 jaar</h1>
-      <p><em>Student FDND • Passie voor auto’s</em></p>
+    <!-- Knoppen -->
+    <div class="controls" aria-label="Acties">
+      <button class="btn" id="flipCardBtn" aria-controls="card" aria-pressed="false">Draai kaart</button>
+      <button class="btn" id="turnPhotoBtn" aria-controls="photo" aria-pressed="false">Draai foto</button>
+    </div>
 
-      <!-- Layout toggle knop -->
-      <button class="profile-card-example-button" aria-label="Wissel layout">
-        <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" />
-          <path d="M4 8v-2a2 2 0 0 1 2 -2h2"/>
-          <path d="M4 16v2a2 2 0 0 0 2 2h2"/>
-          <path d="M16 4h2a2 2 0 0 1 2 2v2"/>
-          <path d="M16 20h2a2 2 0 0 0 2 -2v-2"/>
-        </svg>
-        <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </header>
+    <!-- Kaart -->
+    <article id="card" class="card3d" role="article" aria-live="polite">
+      <!-- VOORKANT -->
+      <div class="face front" aria-label="Voorkant visitekaart">
+        <!-- Foto die afzonderlijk draait -->
+        <div class="photo-wrap">
+          <div id="photo" class="photo3d" aria-label="Profielfoto van Jasin">
+            <div class="photo3d-inner">
+              <div class="photo-face photo-front">
+                <img src="assets/Jasin 1.jpg" alt="Profielfoto van Jasin – voorkant" />
+              </div>
+              <div class="photo-face photo-back">
+                <img src="assets/Jasin 2.jpg" alt="Profielfoto van Jasin – achterkant" />
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Profielfoto -->
-    <img src="assets/Arthur .jpg" alt="Profielfoto van Jasin" class="profile-card-example-img"/>
+        <!-- Inhoud voorzijde -->
+        <div class="content">
+          <header class="card-header">
+            <h1>Jasin</h1>
+            <p class="muted">Student FDND • Passie voor auto’s</p>
+            <span class="pill">Frontend Developer</span>
+          </header>
 
-    <!-- Over mij -->
-    <section class="card card--about">
-      <h2>Over mij</h2>
-      <p>
-        Ik ben Jasin, een jongen van 20 jaar met een grote interesse in frontend development. 
-        Ik wil mezelf graag verder ontwikkelen in dit vak en groeien tot een sterke front-end ontwikkelaar. 
-        Leren, experimenteren en steeds beter worden geeft mij veel energie.
-      </p>
-    </section>
+          <div class="grid">
+            <section class="block">
+              <h2>Skills & Kwaliteiten</h2>
+              <ul>
+                <li>Communicatief vaardig</li>
+                <li>Leergierig en nieuwsgierig</li>
+                <li>Gemotiveerd en doorzettend</li>
+              </ul>
+            </section>
+            <section class="block">
+              <h2>Interesses</h2>
+              <ul>
+                <li>Auto’s & techniek</li>
+                <li>Front-end design</li>
+                <li>Samen projecten bouwen</li>
+              </ul>
+            </section>
+          </div>
 
-    <!-- H2 links -->
-    <section class="card card--left">
-      <h2>Wat ik belangrijk vind</h2>
-      <p>
-        Heldere communicatie, verantwoordelijkheid nemen en met plezier samenwerken aan resultaat.
-      </p>
-    </section>
+          <footer class="card-footer">
+            <p class="muted">Volg mij:</p>
+            <ul class="social">
+              <li><a href="https://instagram.com" target="_blank" rel="noreferrer noopener">Instagram</a></li>
+              <li><a href="https://facebook.com" target="_blank" rel="noreferrer noopener">Facebook</a></li>
+              <li><a href="https://x.com" target="_blank" rel="noreferrer noopener">X</a></li>
+            </ul>
+          </footer>
+        </div>
+      </div>
 
-    <!-- H2 rechts -->
-    <section class="card card--right">
-      <h2>Skills & Kwaliteiten</h2>
-      <ul>
-        <li>Communicatief vaardig</li>
-        <li>Leergierig en nieuwsgierig</li>
-        <li>Gemotiveerd en doorzettend</li>
-      </ul>
-    </section>
+      <!-- ACHTERKANT -->
+      <div class="face back" aria-label="Achterkant visitekaart">
+        <div class="photo-wrap">
+          <div class="photo3d">
+            <div class="photo3d-inner">
+              <div class="photo-face photo-front">
+                <img src="assets/Jasin 2.jpg" alt="Profielfoto van Jasin – voorkant" />
+              </div>
+              <div class="photo-face photo-back">
+                <img src="assets/Jasin 2.jpg" alt="Profielfoto van Jasin – achterkant" />
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- H3 links -->
-    <section class="card card--list">
-      <h3>Interesses</h3>
-      <ul>
-        <li>Auto’s & techniek</li>
-        <li>Front-end design</li>
-        <li>Samen projecten bouwen</li>
-      </ul>
-    </section>
+        <div class="content">
+          <header class="card-header">
+            <h1>Over mij</h1>
+            <p class="muted">Wie ik ben en wat mij drijft</p>
+          </header>
 
-    <!-- H3 rechts -->
-    <section class="card card--extra">
-      <h3>Doelen</h3>
-      <p>
-        Verder groeien in webontwikkeling en mijn passie voor auto’s combineren met digitale producten. <br>
-        In de toekomst is mijn droom om een <strong>BMW M4 Competition full option</strong> te bezitten.
-      </p>
-    </section>
+          <section class="block">
+            <p>
+              Ik ben Jasin Ahmed, een jongen van 20 jaar met een grote interesse in frontend development.
+              Ik wil mezelf graag verder ontwikkelen in dit vak en groeien tot een sterke frontend ontwikkelaar.
+              Leren, experimenteren en steeds beter worden geeft mij veel energie.
+            </p>
+          </section>
 
-    <!-- Footer -->
-    <footer class="profile-card-example-footer">
-      <p>Volg mij:</p>
-      <ul>
-        <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
-        <li><a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
-        <li><a href="https://x.com" target="_blank" rel="noreferrer">X</a></li>
-      </ul>
-    </footer>
-    
-  </article>
+          <div class="grid">
+            <section class="block">
+              <h2>Wat ik belangrijk vind</h2>
+              <p>Heldere communicatie, verantwoordelijkheid nemen en met plezier samenwerken aan resultaat.</p>
+            </section>
+            <section class="block">
+              <h2>Ambitie</h2>
+              <p>Verder groeien in webontwikkeling en mijn passie voor auto’s combineren met digitale producten.
+              Droom: een <strong>BMW M4 Competition</strong> (full option) in de toekomst.</p>
+            </section>
+          </div>
 
-  <script>
-    // Toggle layout knop
-    document.querySelector('.profile-card-example-button')
-      ?.addEventListener('click', () => {
-        document.body.classList.toggle('is-expanded');
-      });
-  </script>
+          <footer class="card-footer">
+            <div class="pill" aria-hidden="true">Contact: jasin@example.com</div>
+            <div class="qr" aria-hidden="true" title="QR placeholder"></div>
+          </footer>
+        </div>
+      </div>
+    </article>
+  </section>
+
+<script src="scripts/script.js" defer></script>
 </body>
 </html>

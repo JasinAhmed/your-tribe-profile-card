@@ -1,114 +1,157 @@
-/* Basis */
-* { box-sizing: border-box; }
-html:has(.profile-card-example){ height:100vh; }
-body:has(.profile-card-example){
-  margin:0; height:100vh;
-  display:flex; justify-content:center; align-items:center;
-  font-family:"Open Sans",sans-serif; color:#111; background:#f8f9fa;
+:root {
+  --bg: #0f1220;
+  --bg-2: #14182a;
+  --text: #e9eef5;
+  --muted: #b8c1d1;
+  --accent: #5dd4d4;
+  --card-w: clamp(300px, 92vw, 920px);
+  --card-h: clamp(420px, 70vh, 560px);
+  --radius: 22px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+  --gap: 18px;
 }
 
-/* Kaart: grid volgens schets */
-.profile-card-example{
-  position:relative;
-  display:grid;
-  gap:1rem;
-  width:min(92vw, 980px);
-  padding:1rem 1.25rem;
-  border-radius:16px;
-  background:#fff;
-  box-shadow:0 4px 20px rgba(0,0,0,.1);
-  transition:.25s;
-
-  /* mobiel stack */
-  grid-template-columns:1fr;
-  grid-template-areas:
-    "header"
-    "image"
-    "about"
-    "left"
-    "right"
-    "list"
-    "extra"
-    "footer";
-}
-
-/* desktop: zoals tekening */
-@media (min-width: 900px){
-  .profile-card-example{
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas:
-      "header image"  /* H1 links, foto rechts */
-      "about  image"  /* groot H2 blok links, foto blijft rechts */
-      "left   right"  /* twee H2 blokken naast elkaar */
-      "list   extra"  /* twee H3 blokken onderaan */
-      "footer footer";
+@media (prefers-color-scheme: light) {
+  :root { --bg:#f5f7fb; --bg-2:#fff; --text:#1b2330; --muted:#475063; --accent:#2563eb; }
+  body {
+    background-image:
+      radial-gradient(600px 300px at 10% 10%, rgba(37,99,235,.12), transparent),
+      radial-gradient(600px 300px at 90% 90%, rgba(16,185,129,.10), transparent);
   }
 }
 
-/* Header */
-.profile-card-example-header{
-  grid-area:header;
-  display:flex; flex-direction:column; align-items:flex-start;
-}
-.profile-card-example-header h1{
-  margin:2rem 0 .5rem; color:#000;
-}
-.profile-card-example-header p{ margin:0; color:#444; font-style:italic; }
-
-/* Toggle knop */
-.profile-card-example-button{
-  position:absolute; right:1rem; top:1rem;
-  width:2.5rem; height:2.5rem; padding:.25rem;
-  border:1px solid #000; border-radius:50%;
-  background:#fff; transform:scale(.9); transition:.25s;
-}
-.profile-card-example-button:focus{ outline:none; background:#000; }
-.profile-card-example-button svg{
-  position:absolute; top:calc(1.25rem - 12px); left:calc(1.25rem - 12px);
-  stroke:#000; transition:.2s;
-}
-.profile-card-example-button:focus svg{ stroke:#fff; }
-.profile-card-example-button svg:nth-of-type(2){ opacity:0; }
-
-/* Foto rechts, rechthoekig zoals schets */
-.profile-card-example-img{
-  grid-area:image;
-  justify-self:end; align-self:start;
-  width:clamp(160px, 26vw, 260px);
-  aspect-ratio:1/1; object-fit:cover;
-  border:2px solid #000; border-radius:12px;
-  box-shadow:0 2px 6px rgba(0,0,0,.2);
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(800px 400px at 20% 20%, rgba(93,212,212,.12), transparent),
+    radial-gradient(900px 500px at 80% 80%, rgba(99,102,241,.10), transparent),
+    var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
-/* Generieke kaartblokken (H2/H3) */
-.card{
-  background:#fff; border:1.5px solid #000; border-radius:12px;
-  padding:1rem 1.1rem; color:#111;
-}
-.card h2, .card h3{ margin:.1rem 0 .6rem; }
-.card p{ margin:.25rem 0 0; }
-.card ul{ margin:.25rem 0 0; padding-left:1.1rem; }
+/* Scene */
+.scene { perspective: 1600px; }
 
-/* Areas koppelen */
-.card--about{ grid-area:about; }
-.card--left{ grid-area:left; }
-.card--right{ grid-area:right; }
-.card--list{ grid-area:list; }
-.card--extra{ grid-area:extra; }
-
-/* Footer */
-.profile-card-example-footer{
-  grid-area:footer; text-align:center;
-  border-top:1px solid #000; padding:1rem .5rem;
+/* Kaart 3D */
+.card3d {
+  width: var(--card-w);
+  height: var(--card-h);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1);
 }
-.profile-card-example-footer p{ margin:0 0 .5rem; font-weight:600; }
-.profile-card-example-footer ul{
-  list-style:none; padding:0; margin:0;
-  display:flex; gap:1rem; justify-content:center;
-}
-.profile-card-example-footer a{ color:#111; text-decoration:none; font-weight:600; }
-.profile-card-example-footer a:hover{ text-decoration:underline; }
+.card3d.is-flipped { transform: rotateY(180deg); }
 
-/* Expanded state (optioneel) */
-body.is-expanded{ font-size:1.1em; }
-body.is-expanded .profile-card-example-img{ width:clamp(200px, 30vw, 300px); }
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--gap);
+  padding: 22px;
+  background: linear-gradient(180deg, var(--bg-2), color-mix(in oklab, var(--bg-2) 85%, black));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backface-visibility: hidden;
+}
+.face.back { transform: rotateY(180deg); }
+
+/* Foto container links */
+.photo-wrap {
+  position: relative;
+  border-radius: calc(var(--radius) - 6px);
+  overflow: hidden;
+  background: #0a0d18;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+/* Foto die ook 3D draait */
+.photo3d { width: 100%; height: 100%; perspective: 1200px; }
+.photo3d-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.photo-face {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  backface-visibility: hidden; overflow: hidden;
+}
+.photo-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Echte flip van de foto: 0° ↔ 180° */
+.photo-face.photo-front { transform: rotateY(0deg); }
+.photo-face.photo-back  { transform: rotateY(180deg); }
+.photo3d.is-turned .photo3d-inner { transform: rotateY(180deg); }
+
+/* Content rechts */
+.content { display: grid; align-content: start; gap: var(--gap); }
+header.card-header { display: grid; gap: 6px; }
+header.card-header h1 { margin: 0; font-size: clamp(1.4rem, 2.6vw, 2rem); letter-spacing: .2px; }
+header.card-header p { margin: 0; color: var(--muted); }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 999px;
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: var(--text);
+  font-weight: 600; letter-spacing: .2px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 50%, transparent);
+  width: max-content;
+}
+
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(2, minmax(0,1fr)); }
+.block {
+  background: color-mix(in oklab, var(--bg-2) 85%, black);
+  border-radius: calc(var(--radius) - 8px);
+  padding: 14px 16px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.block h2, .block h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.block p, .block ul { margin: 0; color: var(--muted); }
+.block ul { padding-left: 18px; }
+
+footer.card-footer { display:flex; align-items:center; justify-content:space-between; gap: 12px; }
+.social { display:flex; gap:10px; list-style:none; padding:0; margin:0; }
+.social a {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 8px 12px; border-radius: 10px; text-decoration:none;
+  color: var(--text);
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 50%, transparent);
+  font-weight: 600;
+}
+
+/* Controls */
+.controls { position: absolute; inset: auto 18px 18px auto; display:flex; gap:10px; z-index: 10; }
+.btn {
+  cursor: pointer; border: none; padding: 10px 14px; border-radius: 12px;
+  background: var(--bg-2); color: var(--text); box-shadow: var(--shadow); font-weight: 700;
+}
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* QR placeholder */
+.qr {
+  width: 120px; aspect-ratio: 1/1; border-radius: 12px;
+  background:
+    radial-gradient(circle at 30% 30%, var(--accent), transparent 60%),
+    conic-gradient(from 0deg, var(--text), var(--bg));
+  filter: grayscale(.8) contrast(1.2);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .face { grid-template-columns: 1fr; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card3d, .photo3d-inner { transition-duration: .001s; }
+}
